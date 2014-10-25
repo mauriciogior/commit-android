@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- TEXT VIEWS -->
+    <dimen name="textview_goku">24sp</dimen>
+    <dimen name="textview_hero">20sp</dimen>
+    <dimen name="textview_h1">16sp</dimen>
+    <dimen name="textview_h2">14sp</dimen>
+    <dimen name="textview_h3">12sp</dimen>
+    <dimen name="textview_p">10sp</dimen>
+    <dimen name="textview_small">8sp</dimen>
+    <dimen name="textview_remind_margin_r">10dp</dimen>
+    
+    <!-- LAYOUTS -->
+    <dimen name="layout_top_padding_l_r">30dp</dimen>
+    <dimen name="layout_top_padding_t_b">30dp</dimen>
+    <dimen name="layout_top_padding_t">30dp</dimen>
+    <dimen name="layout_top_padding_b">20dp</dimen>
+    <dimen name="layout_middle_padding_l_r">30dp</dimen>
+    <dimen name="layout_middle_padding_t_b">20dp</dimen>
+    
+    <!-- BUTTONS -->
+    <dimen name="button_commit_size">120dp</dimen>
+    <dimen name="button_commit_padding_l_r">15dp</dimen>
+    <dimen name="button_commit_drawable_padding_l">30dp</dimen>
+    <dimen name="button_commit_margin_t">60dp</dimen>
+    <dimen name="button_input_size">50dp</dimen>
+    <dimen name="button_input_drawable_padding">5dp</dimen>
+    <dimen name="button_input_padding_l">10dp</dimen>
+    <dimen name="button_input_margin_r">20dp</dimen>
+    
+</resources>

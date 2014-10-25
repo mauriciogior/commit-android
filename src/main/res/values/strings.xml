@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="AppName">Commit</string>
+    
+    <string name="TextView_i_will">I will</string>
+    <string name="TextView_every_day">every day.</string>
+    <string name="TextView_did_you">Did you</string>
+    <string name="TextView_today">today?</string>
+    <string name="TextView_remind_me_at">Remind me at</string>
+    <string name="TextView_just_in_case">to be sure.</string>
+    <string name="TextView_day_in_a_row"> day in a row.</string>
+    <string name="TextView_days_in_a_row"> days in a row.</string>
+    <string name="TextView_just_reminding">Just reminding&#8230;</string>
+    
+    <string name="EditText_commitment_hint">eat vegetables</string>
+    <string name="EditText_remind_time_hint">4:00 PM</string>
+    
+    <string name="Button_commit">Commit</string>
+    <string name="Button_yes">Yes</string>
+    <string name="Button_done">Done</string>
+    <string name="Button_add_check_yesterday">Add check for yesterday</string>
+
+    <string name="Toast_description">Give me a description.</string>
+    <string name="Toast_fill_reminder">Select I time for reminder, just in case.</string>
+    <string name="Toast_great_job">Great job!</string>
+    <string name="Toast_commitment_deleted">Commitment removed!</string>
+    <string name="Toast_you_commited_to">You committed to</string>
+    
+    <string name="Dialog_pick_time">Remind me at</string>
+</resources>

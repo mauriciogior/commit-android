@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:commit="http://schemas.android.com/apk/lib/com.mauriciogiordano.commit.view"
+   	android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <LinearLayout
+        android:id="@+id/Layout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/layout_top_padding_l_r"
+        android:paddingRight="@dimen/layout_top_padding_l_r"
+        android:paddingTop="@dimen/layout_top_padding_t_b"
+        android:paddingBottom="@dimen/layout_top_padding_t_b">
+        
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        commit:textFor="hero"
+	        android:textColor="@color/textColor"
+	        android:text="@string/TextView_did_you" />
+	    
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:id="@+id/TextView_commitment"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        commit:textFor="hero"
+	        android:textColor="@color/inputTextColor" />
+	    
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        commit:textFor="hero"
+	        android:textColor="@color/textColor"
+	        android:text="@string/TextView_today" />
+	    
+	</LinearLayout>
+	
+    <RelativeLayout
+        android:id="@+id/Layout_middle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/layout_middle_padding_l_r"
+        android:paddingRight="@dimen/layout_middle_padding_l_r"
+        android:paddingTop="@dimen/layout_middle_padding_t_b"
+        android:paddingBottom="@dimen/layout_middle_padding_t_b">
+	    	    
+	    <com.mauriciogiordano.commit.view.CommitButton
+	        android:id="@+id/Button_commit"
+	        android:layout_centerHorizontal="true"
+	        android:layout_width="@dimen/button_commit_size"
+	        android:layout_height="@dimen/button_commit_size"
+	        android:paddingRight="@dimen/button_commit_padding_l_r"
+	        android:paddingLeft="@dimen/button_commit_padding_l_r"
+	        android:text="@string/Button_yes"
+	        commit:textFor="h1"
+	        android:textColor="@color/inputTextColor"
+	        android:background="@drawable/button_commit" />
+	    
+	    <ImageView
+	        android:id="@+id/Button_commit_ok"
+	        android:layout_centerHorizontal="true"
+	        android:layout_width="@dimen/button_commit_size"
+	        android:layout_height="@dimen/button_commit_size"
+	        android:padding="@dimen/button_commit_drawable_padding_l"
+	        android:background="@drawable/button_icon"
+	        android:src="@drawable/icon_ok"
+	        android:visibility="invisible" />
+
+	    <Button
+	        android:id="@+id/Button_edit"
+	        android:layout_width="@dimen/button_input_size"
+	        android:layout_height="@dimen/button_input_size"
+	        android:layout_alignBottom="@+id/Button_commit"
+	        android:layout_toLeftOf="@+id/Button_commit"
+	        android:background="@drawable/button_icon"
+	        android:drawableLeft="@android:drawable/ic_menu_edit"
+	        android:drawablePadding="@dimen/button_input_drawable_padding"
+	        android:paddingLeft="@dimen/button_input_padding_l"
+	        android:layout_marginRight="@dimen/button_input_margin_r" />
+	    
+	    <Button
+	        android:id="@+id/Button_config"
+	        android:layout_width="@dimen/button_input_size"
+	        android:layout_height="@dimen/button_input_size"
+	        android:layout_alignBottom="@+id/Button_commit"
+	        android:layout_toRightOf="@+id/Button_commit"
+	        android:background="@drawable/button_icon"
+	        android:drawableLeft="@android:drawable/ic_menu_preferences"
+	        android:drawablePadding="@dimen/button_input_drawable_padding"
+	        android:paddingLeft="@dimen/button_input_padding_l"
+	        android:layout_marginLeft="@dimen/button_input_margin_r" />
+	</RelativeLayout>
+	
+    <LinearLayout
+        android:id="@+id/Layout_controls"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/layout_middle_padding_t_b"
+        android:background="#44000000">
+        	    
+	    <View
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:background="#22000000"/>
+	    
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:gravity="center"
+	        android:paddingTop="@dimen/layout_middle_padding_t_b"
+	        android:paddingBottom="@dimen/layout_middle_padding_t_b">
+	        
+		    <Button
+		        android:id="@+id/Button_remove"
+		        android:layout_width="@dimen/button_input_size"
+		        android:layout_height="@dimen/button_input_size"
+		        android:background="@drawable/button_icon"
+		        android:drawableLeft="@android:drawable/ic_menu_delete"
+		        android:drawablePadding="@dimen/button_input_drawable_padding"
+		        android:paddingLeft="@dimen/button_input_padding_l" />
+		    
+		    <com.mauriciogiordano.commit.view.CommitButton
+		        android:id="@+id/Button_check_yesterday"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/button_text"
+		        android:paddingLeft="@dimen/button_input_padding_l"
+		        android:paddingRight="@dimen/button_input_padding_l"
+		        android:text="@string/Button_add_check_yesterday"
+		        commit:textFor="small"
+		        android:textColor="@color/inputTextColor"
+		        android:layout_marginLeft="@dimen/button_input_margin_r" />
+	    </LinearLayout>
+	    
+	    <View
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:background="#22ffffff"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/Layout_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+	    
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_gravity="center_horizontal">
+	        
+		    <com.mauriciogiordano.commit.view.CommitTextView
+		        android:id="@+id/TextView_days"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        commit:textFor="h2"
+		        android:textColor="@color/inputTextColor" />
+		    
+		    <com.mauriciogiordano.commit.view.CommitTextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        commit:textFor="h2"
+		        android:textColor="@color/textColor"
+		        android:text="@string/TextView_day_in_a_row" />
+	    </LinearLayout>
+	    
+	    <ProgressBar
+	        android:id="@+id/progress_commit"
+	        style="?android:attr/progressBarStyleHorizontal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+	        android:layout_marginTop="20dp"
+	        android:indeterminate="false"
+	        android:max="365"
+	        android:minHeight="20dp"
+	        android:minWidth="250dp"
+	        android:progress="2" />
+    </LinearLayout>
+</LinearLayout>

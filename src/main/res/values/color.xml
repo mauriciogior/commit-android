@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textColor">#e4b4f8</color>
+    <color name="inputTextColor">#fefefe</color>
+    <color name="inputTextColorHint">#bbbbbbbb</color>
+    <color name="buttonCommitColor">#0b803c</color>
+    <color name="buttonOtherColor">#11e4b4f8</color>
+    <color name="buttonOtherStrokeColor">#44e4b4f8</color>
+    <color name="buttonDialogColor">#cc6B0F91</color>
+    <color name="buttonDialogStrokeColor">#886B0F91</color>
+    <color name="dialogBackground">#cc555555</color>
+</resources>

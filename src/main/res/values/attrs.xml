@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <declare-styleable name="CommitTextView">
+       <attr name="textThickness" format="integer" />
+       <attr name="textFor" format="enum">
+           <enum name="h1" value="0"/>
+           <enum name="h2" value="1"/>
+           <enum name="h3" value="2"/>
+           <enum name="paragraph" value="3"/>
+           <enum name="small" value="4"/>
+       </attr>
+   </declare-styleable>
+</resources>

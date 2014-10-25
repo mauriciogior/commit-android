@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:commit="http://schemas.android.com/apk/lib/com.mauriciogiordano.commit.view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/layout_top_padding_l_r"
+        android:paddingRight="@dimen/layout_top_padding_l_r"
+        android:paddingTop="@dimen/layout_top_padding_t"
+        android:paddingBottom="@dimen/layout_top_padding_b" >
+        
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        commit:textFor="hero"
+	        android:textColor="@color/textColor"
+	        android:text="@string/TextView_i_will" />
+	    
+	    <com.mauriciogiordano.commit.view.CommitEditText
+	        android:id="@+id/EditText_commitment"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        commit:textFor="hero"
+	        android:maxLength="20"
+	        android:textCursorDrawable="@drawable/edittext"
+	        android:textColor="@color/inputTextColor"
+	        android:textColorHint="@color/inputTextColorHint"
+	        android:background="@android:color/transparent"
+	        android:hint="@string/EditText_commitment_hint" />
+	    
+	    <View
+	        android:layout_marginTop="2dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:background="@drawable/edittext"/>
+	    
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        commit:textFor="hero"
+	        android:textColor="@color/textColor"
+	        android:text="@string/TextView_every_day" />
+	    
+	</LinearLayout>
+	
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/layout_middle_padding_l_r"
+        android:paddingRight="@dimen/layout_middle_padding_l_r"
+        android:paddingTop="@dimen/layout_middle_padding_t_b"
+        android:paddingBottom="@dimen/layout_middle_padding_t_b">
+	    
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:id="@+id/TextView_remind_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        commit:textFor="h2"
+	        android:layout_marginRight="@dimen/textview_remind_margin_r"
+	        android:textColor="@color/textColor"
+	        android:text="@string/TextView_remind_me_at" />
+	    
+	    <com.mauriciogiordano.commit.view.CommitEditText
+	        android:id="@+id/EditText_reminder"
+	        android:layout_toRightOf="@+id/TextView_remind_1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+			android:cursorVisible="false"
+	        commit:textFor="h4"
+	        android:textColor="@color/inputTextColor"
+	        android:textColorHint="@color/inputTextColorHint"
+	        android:background="@android:color/transparent"
+	        android:hint="@string/EditText_remind_time_hint"
+			android:gravity="center" />
+	    
+	    <View
+	        android:layout_toRightOf="@+id/TextView_remind_1"
+	        android:layout_below="@+id/EditText_reminder"
+	        android:layout_marginTop="2dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:background="@drawable/edittext" />
+	    
+	    <com.mauriciogiordano.commit.view.CommitTextView
+	        android:id="@+id/TextView_remind_2"
+	        android:layout_below="@+id/TextView_remind_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        commit:textFor="h2"
+	        android:layout_marginRight="@dimen/textview_remind_margin_r"
+	        android:textColor="@color/textColor"
+	        android:text="@string/TextView_just_in_case" />
+	    
+	    <RelativeLayout
+		    android:layout_below="@+id/TextView_remind_2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent">
+	        
+		    <com.mauriciogiordano.commit.view.CommitButton
+		        android:id="@+id/Button_commit"
+		        android:layout_centerInParent="true"
+		        android:layout_marginTop="@dimen/button_commit_margin_t"
+		        android:layout_width="@dimen/button_commit_size"
+		        android:layout_height="@dimen/button_commit_size"
+		        android:paddingRight="@dimen/button_commit_padding_l_r"
+		        android:paddingLeft="@dimen/button_commit_padding_l_r"
+		        android:text="@string/Button_commit"
+		        commit:textFor="h3"
+		        android:textColor="@color/inputTextColor"
+		        android:background="@drawable/button_commit" />
+		    
+	    </RelativeLayout>
+	</RelativeLayout>
+</LinearLayout>

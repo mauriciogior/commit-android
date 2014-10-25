@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:commit="http://schemas.android.com/apk/lib/com.mauriciogiordano.commit.view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:padding="10dp">
+
+		<com.mauriciogiordano.commit.view.CommitTextView
+	         android:layout_width="fill_parent"
+	         android:layout_height="wrap_content"
+	         android:text="@string/Dialog_pick_time"
+			 commit:textFor="h1"
+	         android:layout_marginLeft="20dp"
+	         android:layout_marginRight="20dp"
+	         android:layout_marginTop="10dp"
+	         android:layout_marginBottom="10dp" />
+		
+	    <TimePicker
+	        android:id="@+id/time"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:layout_gravity="center" />
+    </LinearLayout>
+	
+    <com.mauriciogiordano.commit.view.CommitButton
+        android:id="@+id/buttonTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/Button_done"
+		commit:textFor="p"
+		android:textColor="@color/inputTextColor"
+		android:background="@drawable/button_text_dialog"
+		android:layout_gravity="center" />
+    
+</LinearLayout>

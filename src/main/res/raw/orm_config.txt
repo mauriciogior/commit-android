@@ -1,0 +1,36 @@
+#
+# generated on 2014/09/05 12:27:34
+#
+# --table-start--
+dataClass=com.mauriciogiordano.commit.database.Commitment
+tableName=commitment
+# --table-fields-start--
+# --field-start--
+fieldName=commitmentID
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=reminder
+# --field-end--
+# --field-start--
+fieldName=consecutiveDays
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.mauriciogiordano.commit.database.Commit
+tableName=commit
+# --table-fields-start--
+# --field-start--
+fieldName=when
+# --field-end--
+# --field-start--
+fieldName=commitmentID
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
