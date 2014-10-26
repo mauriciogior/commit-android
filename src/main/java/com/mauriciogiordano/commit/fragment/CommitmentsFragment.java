@@ -73,7 +73,6 @@ public class CommitmentsFragment extends Fragment
     private boolean controlsExpanded;
 
     private boolean inEditMode = false;
-    private boolean hasCommit = false;
     
     public static CommitmentsFragment newInstance(Commitment mCommitment)
     {
@@ -138,7 +137,6 @@ public class CommitmentsFragment extends Fragment
 		
 		if(mCommitment.hasCommitForToday(mainActivity.getApplicationContext()))
 		{
-            hasCommit = true;
 			bCommit.setVisibility(View.INVISIBLE);
 			rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.VISIBLE);
 		}
@@ -183,7 +181,7 @@ public class CommitmentsFragment extends Fragment
                 }
                 else
                 {
-                    if (hasCommit) return;
+                    if (mCommitment.hasCommitForToday(mainActivity.getApplicationContext())) return;
 
                     mCommitment.newCommit(mainActivity.getApplicationContext());
 
@@ -204,8 +202,6 @@ public class CommitmentsFragment extends Fragment
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
-                    hasCommit = true;
                 }
             }
         });
@@ -436,7 +432,7 @@ public class CommitmentsFragment extends Fragment
             bCommit.setVisibility(View.INVISIBLE);
             rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.VISIBLE);
 
-            if(!hasCommit)
+            if(!mCommitment.hasCommitForToday(mainActivity.getApplicationContext()))
             {
                 bCommit.setVisibility(View.VISIBLE);
                 rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.INVISIBLE);
