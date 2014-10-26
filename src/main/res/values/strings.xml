@@ -17,6 +17,7 @@
     <string name="EditText_remind_time_hint">4:00 PM</string>
     
     <string name="Button_commit">Commit</string>
+    <string name="Button_save">Save</string>
     <string name="Button_yes">Yes</string>
     <string name="Button_done">Done</string>
     <string name="Button_add_check_yesterday">Add check for yesterday</string>
@@ -25,7 +26,10 @@
     <string name="Toast_fill_reminder">Select I time for reminder, just in case.</string>
     <string name="Toast_great_job">Great job!</string>
     <string name="Toast_commitment_deleted">Commitment removed!</string>
-    <string name="Toast_you_commited_to">You committed to</string>
+    <string name="Toast_you_committed_to">You committed to</string>
+    <string name="Toast_changes_success">Saved changes successfully!</string>
+    <string name="Toast_you_committed_yesterday">You just committed for yesterday.</string>
+    <string name="Toast_you_committed_yesterday_already">You didn\'t forget to commit yesterday.</string>
     
     <string name="Dialog_pick_time">Remind me at</string>
 </resources>

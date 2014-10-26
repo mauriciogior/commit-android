@@ -133,7 +133,7 @@ public class CommitFragment extends Fragment
 				    manager.setRepeating(AlarmManager.RTC_WAKEUP, commitment.getReminder(), AlarmManager.INTERVAL_DAY, pendingIntent);
 				    
 				    Toast.makeText(mainActivity,
-				    		getString(R.string.Toast_you_commited_to)
+				    		getString(R.string.Toast_you_committed_to)
 				    		+ " " + commitment.getDescription()
 				    		+ " " + getString(R.string.TextView_every_day), Toast.LENGTH_LONG).show();
 				    

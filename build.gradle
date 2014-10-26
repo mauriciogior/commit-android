@@ -18,8 +18,13 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile project(':androidViewPager')
+    compile project(':joda-time-2.5')
     compile 'com.android.support:support-v4:20.+'
     compile 'com.android.support:appcompat-v7:20.+'
     compile files('libs/ormlite-android-4.48.jar')
