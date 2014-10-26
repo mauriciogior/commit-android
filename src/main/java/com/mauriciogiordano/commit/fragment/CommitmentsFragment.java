@@ -77,15 +77,10 @@ public class CommitmentsFragment extends Fragment
     
     public static CommitmentsFragment newInstance(Commitment mCommitment)
     {
-    	CommitmentsFragment fragment = new CommitmentsFragment(mCommitment);
+    	CommitmentsFragment fragment = new CommitmentsFragment();
+        fragment.mCommitment = mCommitment;
     	
         return fragment;
-    }
-
-    private CommitmentsFragment(Commitment mCommitment)
-    {
-    	super();
-    	this.mCommitment = mCommitment;
     }
     
     @Override
