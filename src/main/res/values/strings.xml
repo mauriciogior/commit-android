@@ -19,6 +19,8 @@
     <string name="Button_commit">Commit</string>
     <string name="Button_save">Save</string>
     <string name="Button_yes">Yes</string>
+    <string name="Button_yes_i_did">Yes, I did!</string>
+    <string name="Button_no_forgot">No, I forgot!</string>
     <string name="Button_done">Done</string>
     <string name="Button_add_check_yesterday">Add check for yesterday</string>
 

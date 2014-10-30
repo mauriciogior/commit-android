@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.LayoutParams;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -73,6 +75,7 @@ public class CommitmentsFragment extends Fragment
     private boolean controlsExpanded;
 
     private boolean inEditMode = false;
+    private boolean hasCommitForToday = false;
     
     public static CommitmentsFragment newInstance(Commitment mCommitment)
     {
@@ -123,7 +126,38 @@ public class CommitmentsFragment extends Fragment
 		bConfig = (Button) rootView.findViewById(R.id.Button_config);
 		bRemove = (Button) rootView.findViewById(R.id.Button_remove);
 		bYesterday = (Button) rootView.findViewById(R.id.Button_check_yesterday);
-		
+
+        eCommitmentDescription.addTextChangedListener(new TextWatcher()
+        {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+                if(eCommitmentDescription.getText().length() > 12)
+                {
+                    eCommitmentDescription.setTextSize(getResources().getDimension(R.dimen.textview_h2));
+                }
+                else
+                {
+                    eCommitmentDescription.setTextSize(getResources().getDimension(R.dimen.textview_hero));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
 		tCommitment.setText(mCommitment.getDescription());
 		
 		if(mCommitment.getDescription().length() > 12)
@@ -139,6 +173,7 @@ public class CommitmentsFragment extends Fragment
 		{
 			bCommit.setVisibility(View.INVISIBLE);
 			rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.VISIBLE);
+            hasCommitForToday = true;
 		}
 
         bCommit.setOnClickListener(new OnClickListener()
@@ -179,7 +214,7 @@ public class CommitmentsFragment extends Fragment
 
                     editSwapper();
                 }
-                else
+                else if(!hasCommitForToday)
                 {
                     if (mCommitment.hasCommitForToday(mainActivity.getApplicationContext())) return;
 
@@ -194,7 +229,7 @@ public class CommitmentsFragment extends Fragment
                         Toast.makeText(getActivity(),
                                 getResources().getString(R.string.Toast_great_job), Toast.LENGTH_SHORT).show();
 
-                        bCommit.setOnClickListener(null);
+                        hasCommitForToday = true;
 
                         bCommit.setVisibility(View.INVISIBLE);
                         rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.VISIBLE);
@@ -415,6 +450,15 @@ public class CommitmentsFragment extends Fragment
 
             eCommitmentReminder.setText(formater.format(selected.getTime()));
 
+            if(eCommitmentDescription.getText().length() > 12)
+            {
+                eCommitmentDescription.setTextSize(getResources().getDimension(R.dimen.textview_h2));
+            }
+            else
+            {
+                eCommitmentDescription.setTextSize(getResources().getDimension(R.dimen.textview_hero));
+            }
+
             inEditMode = !inEditMode;
         }
         else
@@ -427,7 +471,7 @@ public class CommitmentsFragment extends Fragment
             rootView.findViewById(R.id.Layout_bottom).setVisibility(View.VISIBLE);
             lReminder.setVisibility(View.GONE);
 
-            bCommit.setText(getResources().getString(R.string.Button_commit));
+            bCommit.setText(getResources().getString(R.string.Button_yes));
 
             bCommit.setVisibility(View.INVISIBLE);
             rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.VISIBLE);

@@ -101,16 +101,21 @@ public class CommitAlarmIntent extends IntentService
                 PendingIntent pIntentCommit = PendingIntent.getService(getApplicationContext(), 0, intentCommit,
                                             PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_UPDATE_CURRENT);
 
+                String description = c.getDescription();
+                char[] stringArray = description.trim().toCharArray();
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+
+                description = new String(stringArray);
+
 				Notification n = new NotificationCompat.Builder(CommitAlarmIntent.this)
-					.setContentTitle(getString(R.string.TextView_did_you)
-						  + " " + c.getDescription()
-						  + " " + getString(R.string.TextView_today))
+					.setContentTitle(description
+						  + " " + getString(R.string.TextView_every_day))
 				    .setContentText(getString(R.string.TextView_just_reminding))
-				    .setSmallIcon(R.drawable.icon_notification)
+				    .setSmallIcon(R.drawable.ic_stat_toggle_check_box)
 				    .setAutoCancel(true)
-				    .addAction(R.drawable.icon_yes_small, getString(R.string.Button_yes), pIntentCommit)
+				    .addAction(R.drawable.icon_yes_small, getString(R.string.Button_yes_i_did), pIntentCommit)
 				    .build();
-				
+                
 				NotificationManager notificationManager = 
 						(NotificationManager) CommitAlarmIntent.this.getSystemService(Activity.NOTIFICATION_SERVICE);
 

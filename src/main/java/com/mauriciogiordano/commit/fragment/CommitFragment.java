@@ -78,7 +78,7 @@ public class CommitFragment extends Fragment
 
 				if(description.getText().length() > 12)
 				{
-					description.setTextSize(getResources().getDimension(R.dimen.textview_h1));
+					description.setTextSize(getResources().getDimension(R.dimen.textview_h2));
 				}
 				else
 				{

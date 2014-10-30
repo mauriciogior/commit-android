@@ -1,5 +1,7 @@
 package com.mauriciogiordano.commit;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -26,7 +28,8 @@ public class CommitActivity extends ActionBarActivity
 
     public Dao<Commitment, Integer> dao;
     private DatabaseHelper dh;
-	
+
+    @SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -34,7 +37,14 @@ public class CommitActivity extends ActionBarActivity
         setContentView(R.layout.activity_commit);
         
         // Hide ActionBar (we are not using it).
-        getSupportActionBar().hide();
+        if(Build.VERSION.SDK_INT < 11)
+        {
+            getActionBar().hide();
+        }
+        else
+        {
+            getSupportActionBar().hide();
+        }
 
         mAdapter = new CommitAdapter(getSupportFragmentManager(), getApplicationContext());
 
