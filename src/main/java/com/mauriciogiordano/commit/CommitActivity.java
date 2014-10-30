@@ -35,7 +35,9 @@ public class CommitActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commit);
-        
+
+        // SAMPLE COMMENT TO TEST THE GIT REPOSITORY.
+
         // Hide ActionBar (we are not using it).
         if(Build.VERSION.SDK_INT < 11)
         {
