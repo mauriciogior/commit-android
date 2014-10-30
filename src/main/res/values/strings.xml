@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="AppName">Commit</string>
+    <string name="AppName">Do it!</string>
     
     <string name="TextView_i_will">I will</string>
     <string name="TextView_every_day">every day.</string>
@@ -16,7 +16,7 @@
     <string name="EditText_commitment_hint">eat vegetables</string>
     <string name="EditText_remind_time_hint">4:00 PM</string>
     
-    <string name="Button_commit">Commit</string>
+    <string name="Button_commit">Do it!</string>
     <string name="Button_save">Save</string>
     <string name="Button_yes">Yes</string>
     <string name="Button_yes_i_did">Yes, I did!</string>
