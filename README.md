@@ -5,3 +5,6 @@ Commit is an open source application (under GPLv2) based on the iOS Commit appli
 
 Feel free to contribute to this repository.
 
+##Contributors
+
+Lukas Ferreira, Mauricio Giordano, Felipe Simões and Rodrigo Amorim.
