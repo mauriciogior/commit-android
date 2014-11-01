@@ -36,8 +36,6 @@ public class CommitActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commit);
 
-        // SAMPLE COMMENT TO TEST THE GIT REPOSITORY.
-
         // Hide ActionBar (we are not using it).
         if(Build.VERSION.SDK_INT < 11)
         {
@@ -47,6 +45,12 @@ public class CommitActivity extends ActionBarActivity
         {
             getSupportActionBar().hide();
         }
+	}
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
 
         mAdapter = new CommitAdapter(getSupportFragmentManager(), getApplicationContext());
 
@@ -59,12 +63,12 @@ public class CommitActivity extends ActionBarActivity
         dh = new DatabaseHelper(getApplicationContext());
 
         try {
-			dao = dh.getCommitmentDao();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+            dao = dh.getCommitmentDao();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 	
 	public void updatePages()
 	{

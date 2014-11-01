@@ -25,13 +25,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.j256.ormlite.dao.Dao;
 import com.mauriciogiordano.commit.CommitActivity;
 import com.mauriciogiordano.commit.CommitAlarmReceiver;
 import com.mauriciogiordano.commit.R;
 import com.mauriciogiordano.commit.database.BaseModel;
 import com.mauriciogiordano.commit.database.Commitment;
-import com.mauriciogiordano.commit.database.DatabaseHelper;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -181,17 +179,14 @@ public class CommitmentsFragment extends Fragment
             @Override
             public void onClick(View v)
             {
+
                 if(inEditMode)
                 {
                     mCommitment.setDescription(eCommitmentDescription.getText().toString());
                     mCommitment.setReminder(reminderTime);
 
-                    DatabaseHelper dh = new DatabaseHelper(mainActivity);
-
                     try {
-                        Dao<Commitment, Integer> commitmentDao = dh.getCommitmentDao();
-
-                        commitmentDao.update(mCommitment);
+                        mainActivity.dao.update(mCommitment);
 
                         tCommitment.setText(mCommitment.getDescription());
                     } catch (SQLException e) {
@@ -268,11 +263,8 @@ public class CommitmentsFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-		        DatabaseHelper dh = new DatabaseHelper(getActivity().getApplicationContext());
 
 		        try {
-		        	Dao<Commitment, Integer> dao = dh.getCommitmentDao();
-					
 				    Intent alarmIntent = new Intent(mainActivity, CommitAlarmReceiver.class);
 				    alarmIntent.putExtra("commitmentID", mCommitment.getCommitmentID());
 				    
@@ -281,7 +273,7 @@ public class CommitmentsFragment extends Fragment
 
 				    manager.cancel(pIntentToCancel);
 
-		        	dao.delete(mCommitment);
+		        	mainActivity.dao.delete(mCommitment);
 				    
 		        	Toast.makeText(mainActivity, getString(R.string.Toast_commitment_deleted), Toast.LENGTH_LONG).show();
 		        	
@@ -356,6 +348,13 @@ public class CommitmentsFragment extends Fragment
             @Override
             public void onClick(View view)
             {
+
+                if(controlsExpanded)
+                {
+                    collapse(vControls);
+                    controlsExpanded = false;
+                }
+
                 editSwapper();
             }
         });
