@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,11 +26,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
 import com.mauriciogiordano.commit.CommitActivity;
 import com.mauriciogiordano.commit.CommitAlarmReceiver;
 import com.mauriciogiordano.commit.R;
 import com.mauriciogiordano.commit.database.BaseModel;
 import com.mauriciogiordano.commit.database.Commitment;
+import com.mauriciogiordano.commit.database.DatabaseHelper;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -41,8 +44,10 @@ public class CommitmentsFragment extends Fragment
     private static final String KEY_CONTENT = "CommitsFragment:Content";
 
     private String mContent = "???";
+
+    private int mCommitmentId = -1;
     private Commitment mCommitment;
-    
+
     private CommitActivity mainActivity;
 
     private LayoutInflater inflater;
@@ -50,10 +55,10 @@ public class CommitmentsFragment extends Fragment
 
     private AlertDialog dialog = null;
     private long reminderTime = 0;
-    
+
     private View rootView;
     private View vControls;
-    
+
     private TextView tDaysInARow;
     private TextView tCommitment;
 
@@ -69,30 +74,64 @@ public class CommitmentsFragment extends Fragment
     private Button bConfig;
     private Button bRemove;
     private Button bYesterday;
-    
+
     private boolean controlsExpanded;
 
     private boolean inEditMode = false;
     private boolean hasCommitForToday = false;
-    
+
+    private Dao<Commitment, Integer> dao;
+    private DatabaseHelper dh;
+
     public static CommitmentsFragment newInstance(Commitment mCommitment)
     {
-    	CommitmentsFragment fragment = new CommitmentsFragment();
-        fragment.mCommitment = mCommitment;
-    	
+        Log.d("NEW INSTANCE", mCommitment.getDescription());
+
+        Bundle args = new Bundle();
+
+        args.putInt("commitmentId", mCommitment.getCommitmentID());
+
+        CommitmentsFragment fragment = new CommitmentsFragment();
+        fragment.setArguments(args);
+
         return fragment;
     }
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
         mainActivity = (CommitActivity) getActivity();
-        
+
+        Bundle args = getArguments();
+
         if ((savedInstanceState != null) && savedInstanceState.containsKey(KEY_CONTENT))
         {
             mContent = savedInstanceState.getString(KEY_CONTENT);
+        }
+
+        if(args != null)
+        {
+            mCommitmentId = args.getInt("commitmentId");
+        }
+        else if(savedInstanceState != null)
+        {
+            mCommitmentId = savedInstanceState.getInt("commitmentId");
+        }
+
+        if(mCommitment == null)
+        {
+            dh = new DatabaseHelper(mainActivity);
+
+            try {
+                dao = dh.getCommitmentDao();
+
+                mCommitment = dao.queryForId(mCommitmentId);
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 
@@ -108,7 +147,7 @@ public class CommitmentsFragment extends Fragment
 
 		/* Access to View elements */
 		vControls = rootView.findViewById(R.id.Layout_controls);
-		
+
 		tCommitment = (TextView) rootView.findViewById(R.id.TextView_commitment);
 		tDaysInARow = (TextView) rootView.findViewById(R.id.TextView_days);
 
@@ -156,8 +195,8 @@ public class CommitmentsFragment extends Fragment
             }
         });
 
-		tCommitment.setText(mCommitment.getDescription());
-		
+        tCommitment.setText(mCommitment.getDescription());
+
 		if(mCommitment.getDescription().length() > 12)
 		{
 			tCommitment.setTextSize(getResources().getDimension(R.dimen.textview_h1));
@@ -166,7 +205,7 @@ public class CommitmentsFragment extends Fragment
 		{
 			tCommitment.setTextSize(getResources().getDimension(R.dimen.textview_hero));
 		}
-		
+
 		if(mCommitment.hasCommitForToday(mainActivity.getApplicationContext()))
 		{
 			bCommit.setVisibility(View.INVISIBLE);
@@ -179,7 +218,6 @@ public class CommitmentsFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-
                 if(inEditMode)
                 {
                     mCommitment.setDescription(eCommitmentDescription.getText().toString());
@@ -238,10 +276,10 @@ public class CommitmentsFragment extends Fragment
 
 		pCommit.setProgress(mCommitment.getConsecutiveDays());
 		tDaysInARow.setText(mCommitment.getConsecutiveDays() + " ");
-		
+
 		collapse(vControls);
 		controlsExpanded = false;
-		
+
 		bConfig.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -252,14 +290,14 @@ public class CommitmentsFragment extends Fragment
 
 				if(controlsExpanded) collapse(vControls);
 				else expand(vControls);
-				
+
 				controlsExpanded = !controlsExpanded;
 
 			}
 		});
-		
+
 		bRemove.setOnClickListener(new OnClickListener()
-		{	
+		{
 			@Override
 			public void onClick(View v)
 			{
@@ -267,16 +305,16 @@ public class CommitmentsFragment extends Fragment
 		        try {
 				    Intent alarmIntent = new Intent(mainActivity, CommitAlarmReceiver.class);
 				    alarmIntent.putExtra("commitmentID", mCommitment.getCommitmentID());
-				    
+
 				    AlarmManager manager = (AlarmManager) mainActivity.getSystemService(Context.ALARM_SERVICE);
 				    PendingIntent pIntentToCancel = PendingIntent.getBroadcast(mainActivity, mCommitment.getCommitmentID(), alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 				    manager.cancel(pIntentToCancel);
 
 		        	mainActivity.dao.delete(mCommitment);
-				    
+
 		        	Toast.makeText(mainActivity, getString(R.string.Toast_commitment_deleted), Toast.LENGTH_LONG).show();
-		        	
+
 		        	mainActivity.updatePages();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -340,6 +378,7 @@ public class CommitmentsFragment extends Fragment
                 }
 
                 collapse(vControls);
+                controlsExpanded = false;
             }
         });
 
@@ -508,7 +547,7 @@ public class CommitmentsFragment extends Fragment
         a.setDuration(((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density))*2);
         v.startAnimation(a);
     }
-    
+
     public static void expand(final View v) {
         v.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         final int targtetHeight = v.getMeasuredHeight();
@@ -540,6 +579,7 @@ public class CommitmentsFragment extends Fragment
     public void onSaveInstanceState(Bundle outState)
     {
         super.onSaveInstanceState(outState);
+        outState.putInt("mCommitmentId", mCommitmentId);
         outState.putString(KEY_CONTENT, mContent);
     }
 }

@@ -76,11 +76,11 @@ public class CommitAdapter extends FragmentStatePagerAdapter
     	container.setTag(String.valueOf(position));
     	return super.instantiateItem(container, position);
     }
-    
+
     public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
-    
+
     public void refresh()
     {
         try {
