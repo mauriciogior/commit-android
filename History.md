@@ -1,3 +1,14 @@
+0.1.4 / 2014-11-16
+==================
+
+  * Fixed problems related to consecutive days count.
+  * Fixed layout.
+
+0.1.3 / 2014-11-1
+==================
+
+  * Fixed crashes after long wait / resume the application. (2nd try)
+
 0.1.2 / 2014-10-29
 ==================
 
