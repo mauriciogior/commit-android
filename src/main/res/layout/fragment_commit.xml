@@ -31,6 +31,8 @@
 	        android:textColor="@color/inputTextColor"
 	        android:textColorHint="@color/inputTextColorHint"
 	        android:background="@android:color/transparent"
+            android:singleLine="true"
+            android:maxLines="1"
 	        android:hint="@string/EditText_commitment_hint" />
 	    
 	    <View

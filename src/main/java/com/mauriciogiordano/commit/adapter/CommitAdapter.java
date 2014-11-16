@@ -38,7 +38,12 @@ public class CommitAdapter extends FragmentStatePagerAdapter
 			dao = dh.getCommitmentDao();
 			
 			commitments = dao.queryForAll();
-			
+
+            for(int i=0; i<commitments.size(); i++)
+            {
+                commitments.get(i).calculateConsecutiveDays(context);
+            }
+
 			mCount = commitments.size() + 1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

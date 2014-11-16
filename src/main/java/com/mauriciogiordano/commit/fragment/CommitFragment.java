@@ -64,7 +64,6 @@ public class CommitFragment extends Fragment
 
 		description.addTextChangedListener(new TextWatcher()
 		{
-		
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// TODO Auto-generated method stub
@@ -89,7 +88,6 @@ public class CommitFragment extends Fragment
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
 		

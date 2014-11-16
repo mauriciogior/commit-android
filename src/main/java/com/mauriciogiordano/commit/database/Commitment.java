@@ -77,8 +77,6 @@ public class Commitment extends BaseModel
 		commit.setCommitmentID(commitmentID);
 
         if(commits == null) loadCommits(context);
-
-		commits.add(commit);
 		
 		DatabaseHelper dh = new DatabaseHelper(context);
         
@@ -86,12 +84,12 @@ public class Commitment extends BaseModel
         	Dao<Commit, Integer> dao = dh.getCommitDao();
         	
         	dao.create(commit);
+
+            commits.add(commit);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		loadCommits(context);
 
         baseModelListenerHandler.execOnUpdateListeners(this);
 	}
@@ -142,12 +140,17 @@ public class Commitment extends BaseModel
 		return false;
 	}
 
-    private void calculateConsecutiveDays()
+    public void calculateConsecutiveDays(Context context)
     {
         int cd = 1, diff;
 
         Date from = new Date();
         Date to = new Date();
+
+        if(commits == null)
+        {
+            loadCommits(context);
+        }
 
         int size = commits.size();
 
@@ -161,7 +164,7 @@ public class Commitment extends BaseModel
 
                 diff = Days.daysBetween(new DateTime(from), new DateTime(to)).getDays();
 
-                if(diff == 1)
+                if(diff <= 1)
                 {
                     cd++;
                 }
@@ -170,14 +173,14 @@ public class Commitment extends BaseModel
                     break;
                 }
 
-                from.setTime(commits.get(i).getWhen());
+                to.setTime(commits.get(i).getWhen());
             }
 
             setConsecutiveDays(cd);
         }
     }
 
-    public boolean setCheckForYesterday(Context context)
+    public boolean setCheckForYesterday(final Context context)
     {
         if(commits == null) loadCommits(context);
 
@@ -205,7 +208,7 @@ public class Commitment extends BaseModel
 
                 loadCommits(context);
 
-                calculateConsecutiveDays();
+                calculateConsecutiveDays(context);
 
                 commitmentDao.update(this);
 
