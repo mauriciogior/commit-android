@@ -1,7 +1,9 @@
 package com.mauriciogiordano.commit.fragment;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -266,7 +268,12 @@ public class CommitmentsFragment extends Fragment
 
                         bCommit.setVisibility(View.INVISIBLE);
                         rootView.findViewById(R.id.Button_commit_ok).setVisibility(View.VISIBLE);
-                    } catch (SQLException e) {
+
+                        NotificationManager notificationManager =
+                                (NotificationManager) getActivity().getSystemService(Activity.NOTIFICATION_SERVICE);
+
+                        notificationManager.cancel(mCommitment.getCommitmentID());
+                    } catch (Exception e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }

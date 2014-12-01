@@ -69,6 +69,16 @@ public class CommitAdapter extends FragmentStatePagerAdapter
     	return commitments.get(position);
     }
 
+    public int getPage(int commitmentID) {
+        for(int i=0; i<commitments.size(); i++) {
+            if(commitments.get(i).getCommitmentID() == commitmentID) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     @Override
     public int getCount()
     {

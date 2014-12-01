@@ -62,6 +62,8 @@ public class CommitAlarmIntent extends IntentService
 
             Commitment commitment = dao.queryForId(commitmentID);
 
+            if(commitment.hasCommitForToday(getApplicationContext())) return;
+
             commitment.newCommit(getApplicationContext());
 
             dao.update(commitment);
@@ -101,6 +103,14 @@ public class CommitAlarmIntent extends IntentService
                 PendingIntent pIntentCommit = PendingIntent.getService(getApplicationContext(), 0, intentCommit,
                                             PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_UPDATE_CURRENT);
 
+                Intent intentOpenApp = new Intent(getApplicationContext(), CommitActivity.class);
+                intentOpenApp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                        Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentOpenApp.putExtra("commitmentID", commitmentID);
+
+                PendingIntent pIntentOpenApp = PendingIntent.getActivity(getApplicationContext(), 0, intentOpenApp, 0);
+
                 String description = c.getDescription();
                 char[] stringArray = description.trim().toCharArray();
                 stringArray[0] = Character.toUpperCase(stringArray[0]);
@@ -112,8 +122,9 @@ public class CommitAlarmIntent extends IntentService
 						  + " " + getString(R.string.TextView_every_day))
 				    .setContentText(getString(R.string.TextView_just_reminding))
 				    .setSmallIcon(R.drawable.ic_stat_toggle_check_box)
-				    .setAutoCancel(true)
 				    .addAction(R.drawable.icon_yes_small, getString(R.string.Button_yes_i_did), pIntentCommit)
+                    .setAutoCancel(true)
+                    .setContentIntent(pIntentOpenApp)
 				    .build();
                 
 				NotificationManager notificationManager = 

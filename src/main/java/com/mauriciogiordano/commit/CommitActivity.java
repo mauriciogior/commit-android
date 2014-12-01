@@ -1,6 +1,7 @@
 package com.mauriciogiordano.commit;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,12 @@ public class CommitActivity extends ActionBarActivity
     public Dao<Commitment, Integer> dao;
     private DatabaseHelper dh;
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        super.onNewIntent(intent);
+    }
+
     @SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -37,12 +44,10 @@ public class CommitActivity extends ActionBarActivity
         setContentView(R.layout.activity_commit);
 
         // Hide ActionBar (we are not using it).
-        if(Build.VERSION.SDK_INT < 11)
-        {
+        if(Build.VERSION.SDK_INT < 11) {
             getActionBar().hide();
         }
-        else
-        {
+        else {
             getSupportActionBar().hide();
         }
 	}
@@ -67,6 +72,20 @@ public class CommitActivity extends ActionBarActivity
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+
+        Intent intent = getIntent();
+
+        if(intent != null && intent.getExtras() != null) {
+            int commitmentID = intent.getExtras().getInt("commitmentID", -1);
+
+            if(commitmentID != -1) {
+                int page = mAdapter.getPage(commitmentID);
+
+                if(page != -1) {
+                    mPager.setCurrentItem(page);
+                }
+            }
         }
     }
 	
