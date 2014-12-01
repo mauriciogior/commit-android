@@ -1,3 +1,8 @@
+0.1.5 / 2014-12-1
+==================
+
+  * Fixed notification & app commit action conflict (suggested by Michael).
+
 0.1.4 / 2014-11-16
 ==================
 
